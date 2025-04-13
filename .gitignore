@@ -1,0 +1,44 @@
+# Python virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Logs
+*.log
+
+# Local development environment
+.env
+.env.*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Testing
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+.pytest_cache/
+
+# Migrations (optional, if using)
+alembic/versions/
+
+# DBs (if using SQLite)
+*.sqlite3
+*.db
