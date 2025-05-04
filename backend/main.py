@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
-from pydantic import BaseModel
+import nltk
 from search_engine import (
     build_index,
     compute_tf,
@@ -11,22 +11,20 @@ from search_engine import (
     cosine_similarity,
     euclidean_distance
 )
-import nltk
+
 app = FastAPI()
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://search-1-cq3x.onrender.com"], 
+    allow_origins=["https://search-1-cq3x.onrender.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 nltk.download('punkt')
 nltk.download('stopwords')
 
-
-# Store state
 indexed_docs = {
     "documents": [],
     "index": {},
@@ -39,24 +37,19 @@ indexed_docs = {
 def read_root():
     return {"message": "Backend is up and running!"}
 
-@app.post("/upload/")
-async def upload_files(files: List[UploadFile] = File(...)):
-    contents = []
-    for file in files:
-        if file.filename.endswith(".txt"):
-            file_content = await file.read()
-            decoded = file_content.decode("utf-8")
-            contents.append({"filename": file.filename, "content": decoded})
-        else:
-            contents.append({"filename": file.filename, "error": "Only .txt files allowed"})
-    return contents
-
-class DocumentSet(BaseModel):
-    documents: list[str]
-
 @app.post("/index/")
-def index_documents(doc_set: DocumentSet):
-    documents = doc_set.documents
+async def index_documents(files: List[UploadFile] = File(...)):
+    documents = []
+    for file in files:
+        if not file.filename.endswith(".txt"):
+            return {"error": f"File {file.filename} is not a .txt file"}
+        content = await file.read()
+        decoded = content.decode("utf-8")
+        documents.append(decoded)
+    
+    if not documents:
+        return {"error": "No valid .txt files uploaded"}
+
     index = build_index(documents)
     tf_scores = compute_tf(documents)
     idf_scores = compute_df(index, len(documents))
@@ -68,15 +61,12 @@ def index_documents(doc_set: DocumentSet):
     indexed_docs["idf"] = idf_scores
     indexed_docs["tfidf"] = tfidf_matrix
 
-    return {
-        "index": {k: list(v) for k, v in index.items()},
-        "tfidf": {k: v for k, v in tfidf_matrix.items()}
-    }
+    return {"message": "Indexing completed successfully"}
 
 @app.get("/view-index/")
 def view_index():
     if not indexed_docs["index"]:
-        raise HTTPException(status_code=404, detail="No index built yet")
+        return {"error": "No index built yet"}
     return indexed_docs
 
 class SearchQuery(BaseModel):
@@ -86,7 +76,7 @@ class SearchQuery(BaseModel):
 @app.post("/search/")
 def search_documents(search: SearchQuery):
     if not indexed_docs["tfidf"]:
-        raise HTTPException(status_code=400, detail="No documents indexed yet")
+        return {"error": "No documents indexed yet"}
 
     query_tokens = preprocess(search.query)
     query_freq = {}
@@ -96,7 +86,6 @@ def search_documents(search: SearchQuery):
     max_freq = max(query_freq.values(), default=1)
     query_tf = {term: count / max_freq for term, count in query_freq.items()}
 
-    # Compute query TF-IDF vector
     query_vector = []
     terms = list(indexed_docs["tfidf"].keys())
     for term in terms:
@@ -104,7 +93,6 @@ def search_documents(search: SearchQuery):
         idf = indexed_docs["idf"].get(term, 0.0)
         query_vector.append(tf * idf)
 
-    # Build document vectors
     results = []
     for doc_id in range(len(indexed_docs["documents"])):
         doc_vector = [indexed_docs["tfidf"][term][doc_id] for term in terms]
@@ -114,11 +102,10 @@ def search_documents(search: SearchQuery):
         elif search.metric == "euclidean":
             score = euclidean_distance(query_vector, doc_vector)
         else:
-            raise HTTPException(status_code=400, detail="Invalid metric")
+            return {"error": "Invalid metric"}
 
         results.append((doc_id, score))
 
-    # Sort results (reverse for cosine, normal for euclidean)
     reverse = True if search.metric == "cosine" else False
     results.sort(key=lambda x: x[1], reverse=reverse)
 
