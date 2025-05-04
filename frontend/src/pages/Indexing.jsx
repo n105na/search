@@ -62,7 +62,7 @@ const Indexing = () => {
 
       await response.json();
       alert('Indexing completed successfully.');
-      navigate('/view-index');
+      navigate('view-index');
     } catch (error) {
       console.error('Indexing failed:', error);
       alert('Indexing failed. Check console for details.');
