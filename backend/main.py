@@ -17,7 +17,7 @@ app = FastAPI()
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://search-1-cq3x.onrender.com/"], 
+    allow_origins=["https://search-1-cq3x.onrender.com"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
