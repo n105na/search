@@ -11,7 +11,7 @@ from search_engine import (
     cosine_similarity,
     euclidean_distance
 )
-
+import nltk
 app = FastAPI()
 
 # CORS
@@ -22,6 +22,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+nltk.download('punkt')
+nltk.download('stopwords')
+
 
 # Store state
 indexed_docs = {
