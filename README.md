@@ -2,6 +2,12 @@
 
 A web application for indexing and searching text documents using the TF-IDF algorithm. Built with a **React** frontend and **FastAPI** backend, it allows users to upload `.txt` files, index them, view the TF/IDF and TF-IDF matrices, and search using cosine or Euclidean similarity metrics.
 
+## Hosted Application
+- **Frontend**: https://search-1-cq3x.onrender.com
+- **Backend API**: https://search-xuqp.onrender.com/docs
+
+Access the application directly at the frontend URL. The backend API documentation is available at the backend URL.
+
 ## Features
 
 - **Indexing Interface**: Upload multiple `.txt` files, validate file types, and index documents using TF-IDF.
@@ -34,7 +40,7 @@ A web application for indexing and searching text documents using the TF-IDF alg
 1. Clone the repository (after pushing to GitHub, see below):
    ```bash
    git clone https://github.com/n105na/search.git
-   cd your-repo-name
+   cd search
    ```
 2. Navigate to the backend directory (`backend/`):
    ```bash
@@ -42,7 +48,7 @@ A web application for indexing and searching text documents using the TF-IDF alg
    ```
 3. Install Python dependencies:
    ```bash
-   pip install fastapi uvicorn nltk
+   pip install -r requirements.txt
    ```
 4. Download NLTK data:
    ```bash
@@ -134,7 +140,7 @@ This is a student project for educational purposes. Feel free to fork and experi
 
 ## License
 
-This project is for academic use and not licensed for commercial purposes.
+This project is for academic use.
 
 ## Acknowledgments
 
