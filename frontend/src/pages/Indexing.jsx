@@ -48,7 +48,7 @@ const Indexing = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/index/`, {
+      const response = await fetch(`${API_URL}index/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ function ViewIndex() {
   useEffect(() => {
     const fetchIndex = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/view-index/`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}view-index/`);
         const data = await response.json();
         if (response.ok) {
           setIndexData(data);
