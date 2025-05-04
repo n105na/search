@@ -1,0 +1,139 @@
+.indexing-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  .indexing-title {
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .indexing-file-input {
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+    max-width: 500px;
+    transition: border-color 0.2s;
+  }
+  
+  .indexing-file-input:hover {
+    border-color: #007bff;
+  }
+  
+  .indexing-file-input:disabled {
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .indexing-files-container {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+  }
+  
+  .indexing-files-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.75rem;
+  }
+  
+  .indexing-files-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .indexing-file-item {
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    color: #555;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .indexing-file-item:last-child {
+    border-bottom: none;
+  }
+  
+  .indexing-button {
+    margin-top: 50px;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .indexing-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+  }
+  
+  .indexing-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .indexing-button-spinner {
+    border: 2px solid #fff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .indexing-container {
+      padding: 1.5rem;
+    }
+  
+    .indexing-title {
+      font-size: 1.75rem;
+    }
+  
+    .indexing-files-title {
+      font-size: 1.25rem;
+    }
+  
+    .indexing-file-input {
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+  
+    .indexing-button {
+      font-size: 1rem;
+      padding: 0.5rem 1.5rem;
+    }
+  
+    .indexing-file-item {
+      font-size: 1rem;
+    }
+  }

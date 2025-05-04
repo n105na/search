@@ -1,0 +1,118 @@
+.search-container {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .search-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .search-input-container {
+    margin-bottom: 1rem;
+  }
+  
+  .search-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .search-metric-container {
+    margin-bottom: 1rem;
+  }
+  
+  .search-label {
+    font-size: 1rem;
+    color: #444;
+    margin-right: 0.5rem;
+  }
+  
+  .search-select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .search-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .search-results-container {
+    margin-top: 2rem;
+  }
+  
+  .search-results-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.75rem;
+  }
+  
+  .search-results-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .search-result-item {
+    padding: 0.5rem 0;
+    color: #555;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .search-no-results {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .search-loading {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .search-container {
+      padding: 1rem;
+    }
+  
+    .search-title {
+      font-size: 1.5rem;
+    }
+  
+    .search-results-title {
+      font-size: 1.1rem;
+    }
+  
+    .search-textarea,
+    .search-select,
+    .search-button {
+      font-size: 0.9rem;
+    }
+  }
