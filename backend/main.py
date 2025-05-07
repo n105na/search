@@ -2,6 +2,8 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import nltk
+from pydantic import BaseModel
+
 from search_engine import (
     build_index,
     compute_tf,
