@@ -83,5 +83,5 @@ def cosine_similarity(vec1, vec2):
     return dot_product / (magnitude1 * magnitude2)
 
 def euclidean_distance(vec1, vec2):
-    return math.sqrt(sum((a - b) ** 2 for a, b in zip(vec1, vec2)))
+    return sum((a - b)  for a, b in zip(vec1, vec2))
 
